@@ -1,0 +1,16 @@
+﻿CREATE PROCEDURE [SMARTDEV_HOTEL_APP].[spBooking_CheckIn]
+	@Id int
+AS
+BEGIN
+	SET NOCOUNT ON;
+
+	UPDATE 
+		SMARTDEV_HOTEL_APP.Booking
+	SET 
+		CheckedIn = 1
+	WHERE 
+		Id = @Id;
+END
+GO
+
+
