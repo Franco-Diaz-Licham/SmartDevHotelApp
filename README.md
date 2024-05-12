@@ -1,9 +1,13 @@
+# Description
 Smart Dev Hotel Application is a Windows Presentation Foundation (WPF) desktop application that allows staff users of a small hotel company to view and book available hotel rooms as guests arrive. 
 This application is to be used as an internal application for a small hotel company, having a directory for users, ability to create rooms and notify users via email that their room is ready for check in.
 
 The application uses MSSQL for the Database and data access using Dapper as the ORM via stored procedures for greater control of data querying according to application needs. 
 Looking to introduce basic authentication so that information is hiden behind a login.
 
+This application was completed as a practice project based on Tim Corey's course on C# Application Development.
+
+# Overview
 The application currently has 7 forms:
 
 1. Main Window: Main menu
@@ -30,6 +34,3 @@ The application currently has 7 forms:
 
 
 7. Room Management Form: To be completed
-
-
-This was completed as a practice project based on Tim Corey's course on C# Application Development.
