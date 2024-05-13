@@ -7,4 +7,11 @@ public static class SqliteDataProcessor
     {
         model.Price = model.Price / 100;
     }
+
+    public static void SqliteBookingFull(
+            this BookingFullModel model)
+    {
+        model.Price = model.Price / 100;
+        model.TotalCost = model.TotalCost / 100;
+    }
 }

@@ -18,17 +18,23 @@ public class SqliteData : IDatabaseData
             DateTime endDate, 
             int roomTypeId)
     {
-        SqliteQueries.Guest.TryGetValue("Insert", out var sqlGuest);
+        SqliteQueries.Guest.TryGetValue("SelectByName", out var sqlGetGuest);
+        SqliteQueries.Guest.TryGetValue("Insert", out var sqlInsertGuest);
         SqliteQueries.RoomType.TryGetValue("SelectById", out var sqlRoomType);
         SqliteQueries.Room.TryGetValue("GetAvailableRooms", out var sqlAvailableRooms);
         SqliteQueries.Booking.TryGetValue("Insert", out var sqlBookings);
 
-        object pGuest = new { Firstname = firstName, LastName = lastName };
+        object pGuest = new { FirstName = firstName, LastName = lastName };
         object pRoomType = new { RoomTypeId = roomTypeId };
         object pAvailableRooms = new { StartDate = startDate, EndDate = endDate, RoomTypeId = roomTypeId };
         TimeSpan timeStaying = endDate.Date.Subtract(startDate.Date);
 
-        GuestModel guest = Db.LoadData<GuestModel, dynamic>(sqlGuest!, pGuest, cnx).First();
+        int guestExists = Db.LoadData<GuestModel, dynamic>(sqlGetGuest!, pGuest, cnx).Count();
+
+        if(guestExists is 0)
+            Db.SaveData(sqlInsertGuest!, pGuest, cnx);
+
+        GuestModel guest = Db.LoadData<GuestModel, dynamic>(sqlGetGuest!, pGuest, cnx).First();
         RoomTypeModel roomType = Db.LoadData<RoomTypeModel, dynamic>(sqlRoomType!, pRoomType, cnx).First();
         List<RoomModel> avialableRooms = Db.LoadData<RoomModel, dynamic>(sqlAvailableRooms!, pAvailableRooms, cnx);
 
@@ -91,6 +97,7 @@ public class SqliteData : IDatabaseData
         SqliteQueries.Booking.TryGetValue("Search", out var sp);
         object p = new { LastName = lastName, StartDate = startDate, CheckedIn = checkedIn };
         var result = Db.LoadData<BookingFullModel, dynamic>(sp!, p, cnx);
+        result.ForEach(x => x.SqliteBookingFull());
 
         return result;
     }

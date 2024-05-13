@@ -19,8 +19,8 @@ BEGIN
 			FirstName, 
 			LastName)
 		VALUES(
-			@firstName, 
-			@lastName);
+			@FirstName, 
+			@LastName);
 	END
 
 	SELECT TOP 1 

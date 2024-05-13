@@ -21,9 +21,9 @@ BEGIN
 			FROM 
 				SMARTDEV_HOTEL_APP.Booking AS B
 			WHERE 
-				(@startDate < b.StartDate AND @endDate > b.EndDate)
-				OR (b.StartDate <= @endDate AND @endDate < b.EndDate)
-				OR (b.StartDate <= @startDate AND @startDate < b.EndDate)
+				(@StartDate < b.StartDate AND @EndDate > b.EndDate)
+				OR (b.StartDate <= @EndDate AND @EndDate < b.EndDate)
+				OR (b.StartDate <= @StartDate AND @StartDate < b.EndDate)
 	);
 
 END
