@@ -81,7 +81,7 @@
                             </TextBlock>
                             <TextBlock Text="{Binding Title}" />
                             <TextBlock Text="{Binding Description}" />
-                            <TextBlock Text="{Binding Price}" />
+                            <TextBlock Text="{Binding Price, StringFormat='c'}" />
                             <Button x:Name="bookRoomButton"
                                 Grid.Row="0"
                                 Grid.Column="1"

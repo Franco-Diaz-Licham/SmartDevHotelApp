@@ -7,5 +7,7 @@ global using SmartDevHotelAppLibrary.Databases;
 global using SmartDevHotelAppLibrary.Models;
 global using System.Windows.Controls;
 global using SmartDevHotelApp.Desktop.Forms;
+global using SmartDevHotelAppLibrary.Enums;
+global using SmartDevHotelAppLibrary.DataAccess;
 
 

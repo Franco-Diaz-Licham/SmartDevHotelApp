@@ -3,7 +3,7 @@
 public class SqlData : IDatabaseData
 {
     private readonly ISqlDataAccess Db;
-    private const string cnx = "SqlDb";
+    private const string cnx = "Sql";
 
     public SqlData(ISqlDataAccess db)
     {

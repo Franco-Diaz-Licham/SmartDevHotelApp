@@ -27,9 +27,21 @@ public partial class App : Application
         // services
         IConfiguration config = builder.Build();
 
+        string Db = config.GetValue<string>("SqlDb");
+
+        if(Db == SqlConnectionEnum.Sql.ToString())
+        {
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+            services.AddTransient<IDatabaseData, SqlData>();
+        }
+        else
+        {
+            services.AddTransient<ISqliteDataAccess, SqliteDataAccess>();
+            services.AddTransient<IDatabaseData, SqliteData>();
+        }
+
         services.AddSingleton(config);
-        services.AddTransient<ISqlDataAccess, SqlDataAccess>();
-        services.AddTransient<IDatabaseData, SqlData>();
+
 
         // set main window to start
         Provider = services.BuildServiceProvider();
